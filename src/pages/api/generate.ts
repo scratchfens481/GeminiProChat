@@ -24,7 +24,7 @@ export const post: APIRoute = async(context) => {
       },
     }), { status: 401 })
   }
-
+/*
   if (import.meta.env.PROD && !await verifySignature({ t: time, m: messages[messages.length - 1].parts.map(part => part.text).join('') }, sign)) {
     return new Response(JSON.stringify({
       error: {
@@ -32,6 +32,7 @@ export const post: APIRoute = async(context) => {
       },
     }), { status: 401 })
   }
+  */
 
   try {
     const history = messages.slice(0, -1) // All messages except the last one
