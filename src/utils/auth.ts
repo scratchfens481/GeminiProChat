@@ -17,16 +17,13 @@ async function digestMessage(message: string) {
 
 export const generateSignature = async(payload: AuthPayload) => {
   const { t: timestamp, m: lastMessage } = payload
-  const secretKey = import.meta.env.PUBLIC_SECRET_KEY as string || ''
+  const secretKey = '1'
   const signText = `${timestamp}:${lastMessage}:${secretKey}`
   // eslint-disable-next-line no-return-await
   return await digestMessage(signText)
 }
 
 export const verifySignature = async(payload: AuthPayload, sign: string) => {
-  // if (Math.abs(payload.t - Date.now()) > 1000 * 60 * 5) {
-  //   return false
-  // }
   const payloadSign = await generateSignature(payload)
   return payloadSign === sign
 }
